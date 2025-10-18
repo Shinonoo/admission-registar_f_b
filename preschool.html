@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pre-school Enrollment</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: 50px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 30px 40px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2c3e50;
+    }
+
+    h2 {
+      border-bottom: 2px solid #e67e22;
+      padding-bottom: 5px;
+      margin-top: 30px;
+      color: #2c3e50;
+      font-size: 1.2rem;
+    }
+
+    form label {
+      display: block;
+      font-weight: 600;
+      margin-top: 15px;
+      color: #444;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #e67e22;
+    }
+
+    .required::after {
+      content: " *";
+      color: red;
+    }
+
+    .optional {
+      font-weight: normal;
+      color: #777;
+      font-size: 0.9em;
+    }
+
+    button {
+      margin-top: 25px;
+      background: #e67e22;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #d35400;
+    }
+
+    .guardian-group {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    dialog {
+      border: none;
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    dialog button {
+      width: auto;
+      background: #27ae60;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Pre-school Enrollment Form</h1>
+
+    <form id="preschoolForm">
+
+      <!-- 🧒 Student Information -->
+      <h2>Student Information</h2>
+
+      <label class="required">First Name</label>
+      <input type="text" name="first_name" required>
+
+      <label class="required">Middle Name</label>
+      <input type="text" name="middle_name" required>
+
+      <label class="required">Last Name</label>
+      <input type="text" name="last_name" required>
+
+      <label class="optional">Ext. Name</label>
+      <input type="text" name="ext_name" placeholder="e.g. Jr., III">
+
+      <label class="required">Gender</label>
+      <select name="gender" required>
+        <option value="">-- Select --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+
+      <label class="required">Age</label>
+      <input type="number" name="age" required>
+
+      <label class="required">Email</label>
+      <input type="email" name="email" required>
+
+      <!-- 🏠 Address -->
+      <h2>Home Address</h2>
+
+      <label class="required">Street</label>
+      <input type="text" name="street" required>
+
+      <label class="required">Barangay</label>
+      <input type="text" name="barangay" required>
+
+      <label class="required">City / Town</label>
+      <input type="text" name="city" required>
+
+      <label>Province (Optional)</label>
+      <input type="text" name="province">
+      
+      <!-- 👨‍👩 Family Members -->
+      <h2>Family Members</h2>
+      
+      <div id="family-members-container">
+        <div class="family-member-group">
+          <label class="required">Full Name</label>
+          <input type="text" name="family_name[]" required>
+      
+          <label class="required">Relationship</label>
+          <input type="text" name="family_relationship[]" required>
+      
+          <label>Occupation</label>
+          <input type="text" name="family_occupation[]" placeholder="e.g. Teacher, Engineer">
+      
+          <label class="required">Contact Number</label>
+          <input type="text" name="family_contact[]" pattern="[0-9]{11}" placeholder="e.g. 09123456789" required>
+        </div>
+      </div>
+      
+      <button type="button" id="addFamilyBtn" style="margin-top:10px; background:#3498db;">➕ Add Another Family
+        Member</button>
+
+      <!-- 🏫 Academic Info -->
+      <h2>Academic Information</h2>
+
+      <label>Program</label>
+      <select name="program_id" required>
+        <option value="">-- Select --</option>
+        <option value="1">Pre-School Program</option>
+      </select>
+
+      <label>Year Level</label>
+      <select name="year_level" required>
+        <option value="">-- Select --</option>
+        <option value="Nursery">Nursery</option>
+        <option value="Kinder 1">Kinder 1</option>
+        <option value="Kinder 2">Kinder 2</option>
+      </select>
+
+      <label>Admission Date</label>
+      <input type="date" name="admission_date" required>
+
+      <label>School Year</label>
+      <input type="text" name="school_year" placeholder="2025-2026" required>
+
+      <label>Period</label>
+      <input type="text" name="period" placeholder="1st Semester" required>
+
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+
+  <dialog id="successDialog">
+    <p>✅ Pre-school application submitted successfully!</p>
+    <button id="closeDialog">Close</button>
+  </dialog>
+
+<script>
+  // ➕ Add multiple family members
+  document.getElementById("addFamilyBtn").addEventListener("click", () => {
+    const container = document.getElementById("family-members-container");
+    const group = document.createElement("div");
+    group.classList.add("family-member-group");
+    group.innerHTML = `
+      <hr style="margin:15px 0;">
+      <label>Full Name</label>
+      <input type="text" name="family_name[]" required>
+
+      <label>Relationship</label>
+      <input type="text" name="family_relationship[]" required>
+
+      <label>Occupation</label>
+      <input type="text" name="family_occupation[]" placeholder="e.g. Teacher, Driver">
+
+      <label>Contact Number</label>
+      <input type="text" name="family_contact[]" pattern="[0-9]{11}" placeholder="e.g. 09123456789" required>
+    `;
+    container.appendChild(group);
+  });
+
+  // 📨 Form submit handler
+  document.getElementById("preschoolForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    // collect all family members
+    const names = form.querySelectorAll('input[name="family_name[]"]');
+    const relationships = form.querySelectorAll('input[name="family_relationship[]"]');
+    const occupations = form.querySelectorAll('input[name="family_occupation[]"]');
+    const contacts = form.querySelectorAll('input[name="family_contact[]"]');
+
+    const family_members = [];
+    for (let i = 0; i < names.length; i++) {
+      family_members.push({
+        name: names[i].value,
+        relationship: relationships[i].value,
+        occupation: occupations[i].value || "",
+        contact_number: contacts[i].value
+      });
+    }
+
+    // build main student data
+    const data = {
+      first_name: form.first_name.value,
+      middle_name: form.middle_name.value,
+      last_name: form.last_name.value,
+      ext_name: form.ext_name.value,
+      gender: form.gender.value,
+      age: form.age.value,
+      email: form.email.value,
+      citizenship: "Filipino",
+      religion: "Catholic",
+      lrn: "",
+      phone: family_members[0]?.contact_number || "",
+      program: "Preschool", // ✅ must match program_name in your database
+      street: form.street.value,
+      barangay: form.barangay.value,
+      city: form.city.value,
+      province: form.province.value,
+      year_level: form.year_level.value,
+      admission_date: new Date().toISOString().split("T")[0],
+      school_year: "2025-2026",
+      period: "1st",
+      family_members
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/api/admissions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not OK");
+      }
+
+      const result = await response.json();
+      console.log("✅ Server response:", result);
+
+      const dialog = document.getElementById("successDialog");
+      dialog.showModal();
+      document.getElementById("closeDialog").addEventListener("click", () => dialog.close());
+      form.reset();
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      alert("❌ Error submitting form. Check the console for details.");
+    }
+  });
+</script>
+
+
+
+</body>
+</html>
